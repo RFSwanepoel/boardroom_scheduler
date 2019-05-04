@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid fullscreen ma-0 pa-0>
+  <v-container fill-height fluid fullscreen ma-0 pa-0 app>
     <v-layout>
       <v-flex>
         <vue-cal />
