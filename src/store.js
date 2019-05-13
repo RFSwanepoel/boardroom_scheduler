@@ -1,16 +1,29 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
-Vue.use(Vuex)
+import guiMod from "./storeModules/ui";
+import bookingsMod from "./storeModules/bookings";
+import reportingMod from "./storeModules/reporting";
 
-export default new Vuex.Store({
-  state: {
+Vue.use(vuex);
 
-  },
-  mutations: {
+const persistedStateConfig = {
+  key: "FF-BOARD-BOOKINGS",
+  storage: window.localStorage
+};
 
-  },
-  actions: {
+const debug = window.ENV !== "production";
 
-  }
-})
+export default () => {
+  return new vuex.Store({
+    namespaced: true,
+    strict: debug,
+    modules: {
+      guiMod,
+      bookingsMod,
+      reportingMod
+    },
+    plugins: [createPersistedState(persistedStateConfig)]
+  });
+};
